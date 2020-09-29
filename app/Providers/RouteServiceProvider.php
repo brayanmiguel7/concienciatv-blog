@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Posts;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Exceptions\InvalidPostSlugException;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -30,9 +32,27 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
 
         parent::boot();
+
+        Route::bind('postBySlug', function($value){
+
+            $parts = explode('-', $value);
+            $id = end($parts);
+
+            $post = Posts::findOrFail($id);
+            if($post -> slug.'-'.$post -> id === $value){
+
+                return $post;
+
+            } else {
+
+                throw new InvalidPostSlugException($post);
+
+            }
+
+        });
+
     }
 
     /**

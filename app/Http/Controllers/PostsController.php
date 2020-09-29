@@ -43,11 +43,15 @@ class PostsController extends Controller
 
     public function edit(Posts $post){
 
+        $this -> authorize('update', $post);
+
         return view('posts.edit', compact('post'));
 
     }
 
     public function update(Request $request, Posts $post){
+
+        $this -> authorize('update', $post);
 
         $validatedData = $request -> validate([
 

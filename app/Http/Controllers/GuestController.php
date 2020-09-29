@@ -15,9 +15,13 @@ class GuestController extends Controller
 
     }
 
-    public function show(Posts $post){
+    public function show(Posts $postBySlug){
 
-        return view('posts.show', compact('post'));
+        return view('posts.show', [
+
+            'post' => $postBySlug
+
+        ]);
 
     }
 

@@ -22,7 +22,7 @@
 
                 </div>
 
-                @if($post -> user_id == auth() -> id())
+                @can('update', $post)
 
                     <div class="card-footer">
 
@@ -30,7 +30,7 @@
 
                     </div>
 
-                @endif
+                @endcan
 
             </div>
         </div>

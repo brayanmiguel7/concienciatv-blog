@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'GuestController@index');
+Route::get('/', 'GuestController@index')->name('index');
 
 Auth::routes();
 
@@ -22,10 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/posts/new', 'PostsController@new')->name('newPost');
 Route::post('/posts', 'PostsController@save')->name('savePost');
 
-Route::get('/posts/{post}', 'GuestController@show');
+Route::get('/posts/{postBySlug}', 'GuestController@show');
 
 
-Route::get('/posts/{post}/edit', 'PostsController@edit');
-Route::put('/posts/{post}', 'PostsController@update');
+Route::get('/posts/{post}/edit', 'PostsController@edit') -> middleware('can:update,post');
+Route::put('/posts/{post}', 'PostsController@update') -> middleware('can:update,post');
 
 Route::get('/periodistas/{user}', 'UserController@show');

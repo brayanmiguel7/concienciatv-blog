@@ -46,7 +46,7 @@
 
                             <li>
 
-                                <a href="{{ url('posts/'.$post -> id) }}">{{ $post -> title }}</a>
+                                <a href="{{ $post -> getUrl() }}">{{ $post -> title }}</a>
 
                             </li>
 

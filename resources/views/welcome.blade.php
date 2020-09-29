@@ -13,7 +13,7 @@
 
                     <div class="card-header">
 
-                        {{ $post -> id }}. {{ $post -> title }}
+                        <a href="{{ $post -> getUrl() }}">{{ $post -> id }}. {{ $post -> title }}</a>
 
                     </div>
 
@@ -35,7 +35,7 @@
 
             @endforeach
 
-            <div class="col-6 m-auto">
+            <div class="col-10 ml-auto">
 
                 {{ $posts -> links() }}
 
